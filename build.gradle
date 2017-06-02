@@ -1,0 +1,30 @@
+/*
+ * This build compiles a java library and publishes to a maven repository.
+ */
+group 'io.cachethq.client'
+version '0.1.0-SNAPSHOT'
+
+apply plugin: 'java-library'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.glassfish.jersey.core:jersey-client:2.+'
+    compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.+'
+    compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.+'
+
+    testCompile 'junit:junit:4.12'
+}
+
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                   'Implementation-Version': project.version)
+    }
+}
+
+// https://gist.github.com/suwhs/811bbe43315abaef3b5e
+// http://nemerosa.ghost.io/2015/07/01/publishing-to-the-maven-central-using-gradle/
+// https://antoniocappiello.com/2015/11/11/publish-your-library-to-jcenter-in-3-steps/
